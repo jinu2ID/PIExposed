@@ -1,19 +1,54 @@
 /* list.c
- * a simple linked list implemented in C
+ * a simple singly linked list implemented in C
 */
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
-struct Books
+struct node {
+	struct node *next;
+	int data;
+
+};
+
+bool insertInFront(int _data, node **head)
 {
-	char title[50];
 
-} book;
+	node newNode = malloc(sizeof (struct node));
+	if (!newNode)	// memory allocation error
+	{
+		printf("Unable to allocate memory\n");
+		exit(1);
+	}
+	
+	newNode->data = _data;
+	newNode->next = *head;
+	*head = newNode
+	
 
+}
+
+// Testing linked list
 int main()
 {
-	strcpy(book.title, "test");
-	printf("%s\n", book.title);	
+	// Create root node
+	struct node *root  = malloc(sizeof (struct node));
+
+	// Create a list
+	struct node *current = root;
+	int i;
+	for (i = 0; i < 10; i++){
+		current->data = i;
+		current->next = malloc(sizeof (struct node));
+		current = current->next;
+	}	 
+	
+	// Print list elements
+	current = root;
+	while (current->next != NULL){
+		printf("%d\n", current->data);
+		current = current->next;
+	}
 	
 }
